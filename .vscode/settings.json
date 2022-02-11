@@ -1,0 +1,39 @@
+{
+  "markiscodecoverage.searchCriteria": "coverage/report-lcov/lcov.info",
+  "files.insertFinalNewline": true,
+  "git.ignoreLimitWarning": true,
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "eslint.codeActionsOnSave.mode": "all",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[json]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  },
+  "[scss]": {
+    "editor.tabSize": 2,
+  },
+  "html.format.wrapLineLength": 100,
+  "html.format.wrapAttributes": "aligned-multiple"
+}
