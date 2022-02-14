@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
 
   isSearchHotelProcessing$!: Observable<boolean>
 
+  searchHotelData$!: Observable<any>
+
   constructor(
     private _formBuilder: FormBuilder,
     private _store: Store<FeatureState>,
@@ -67,5 +69,14 @@ export class HomeComponent implements OnInit {
           this.searchForm.enable()
         }
       })
+
+    this.searchHotelData$ = this._searchedKeyword
+      .pipe(
+        filter(x => !!x),
+        switchMap(searchedKeyword => this._store
+          .select(s => s.home.searchHotel[searchedKeyword as string]?.data)
+          .pipe(untilDestroyed(this))
+        )
+      )
   }
 }

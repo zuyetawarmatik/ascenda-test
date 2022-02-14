@@ -15,8 +15,8 @@
 
 <section class="home-main">
   <ul class="home-results">
-    <li class="home-result-item">
-
+    <li class="home-result-item" *ngFor="let item of (searchHotelData$ | async)">
+      {{item.id}}
     </li>
   </ul>
 </section>

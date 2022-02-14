@@ -6,7 +6,7 @@ $light-primary-text: white;
 
 $typography-config: mat.define-typography-config(
   $font-family:
-    "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
+    "CircularStd, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
   $button: mat.define-typography-level(inherit, inherit, 500),
 );
 

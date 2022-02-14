@@ -19,5 +19,8 @@ $primary: map.get($theme, primary);
   }
 
   &-form {
+    ::ng-deep .mat-form-field-underline {
+      opacity: 0;
+    }
   }
 }

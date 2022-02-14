@@ -1,0 +1,36 @@
+@font-face {
+  font-family: CircularStd;
+  src: url("./CircularStd/CircularStd-Book.ttf");
+}
+
+@font-face {
+  font-family: CircularStd;
+  font-weight: 500;
+  src: url("./CircularStd/CircularStd-Medium.ttf");
+}
+
+@font-face {
+  font-family: CircularStd;
+  font-weight: 600;
+  src: url("./CircularStd/CircularStd-Bold.ttf");
+}
+
+@font-face {
+  font-family: CircularStd;
+  font-style: italic;
+  src: url("./CircularStd/CircularStd-BookItalic.ttf");
+}
+
+@font-face {
+  font-family: CircularStd;
+  font-weight: 500;
+  font-style: italic;
+  src: url("./CircularStd/CircularStd-MediumItalic.ttf");
+}
+
+@font-face {
+  font-family: CircularStd;
+  font-weight: 600;
+  font-style: italic;
+  src: url("./CircularStd/CircularStd-BoldItalic.ttf");
+}
