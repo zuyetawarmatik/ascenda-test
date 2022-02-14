@@ -6,6 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
 
 import { environment } from 'src/environments/environment'
+import { ApiInterceptor } from 'app/shared/interceptors/api.interceptor'
 import { BrowserWindowRef, WINDOW, windowFactory, WindowRef } from 'app/shared/services/window.service'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -27,11 +28,11 @@ import { AppComponent } from './app.component'
     AppRoutingModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ApiInterceptor,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    },
     {
       provide: WindowRef,
       useClass: BrowserWindowRef

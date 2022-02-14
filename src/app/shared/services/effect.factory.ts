@@ -43,10 +43,10 @@ export class EffectFactory {
       ofType<Trigger>(triggerActionType),
       innerObservableMap((action: Trigger) =>
         serviceCallback(action).pipe(
-          // filter((response: any) => {
-          //   const eventType = response?.__eventType__
-          //   return eventType === null || eventType === undefined || eventType === HttpEventType.UploadProgress
-          // }),
+          filter((response: any) => {
+            const eventType = response?.__eventType__
+            return eventType === null || eventType === undefined || eventType === HttpEventType.UploadProgress
+          }),
           map(response => new successActionConstructor(action, response)),
           catchError(error => of(new failureActionConstructor(action, error))),
           takeUntil(this._actions$.pipe(ofType(interruptActionType)))

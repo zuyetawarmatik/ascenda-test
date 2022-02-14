@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "~@angular/material" as mat;
+@use "src/app/shared/styles/variables" as *;
+
+$background: map.get($theme, background);
+$primary: map.get($theme, primary);
+
+:host {
+  min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.home {
+  &-top {
+    padding: 12px;
+    padding-block-end: 0;
+    background-color: mat.get-color-from-palette($primary);
+  }
+
+  &-form {
+  }
+}

@@ -1,0 +1,22 @@
+<section class="home-top">
+  <form class="home-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field class="home-form-name" appearance="standard" [hideRequiredMarker]="true">
+      <mat-label>Where would you like to stay?</mat-label>
+      <input matInput [formControl]="keywordCtrl" type="text" required cdkFocusInitial>
+      <button mat-icon-button matSuffix class="home-form-submit-btn" type="button" color="primary"
+              (click)="onSubmit()"
+              [disabled]="searchForm.invalid || (isSearchHotelProcessing$ | async)">
+        <mat-spinner *ngIf="isSearchHotelProcessing$ | async" diameter="16"></mat-spinner>
+        <mat-icon *ngIf="(isSearchHotelProcessing$ | async) === false">search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</section>
+
+<section class="home-main">
+  <ul class="home-results">
+    <li class="home-result-item">
+
+    </li>
+  </ul>
+</section>
