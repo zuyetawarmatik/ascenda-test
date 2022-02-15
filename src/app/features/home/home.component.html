@@ -16,7 +16,16 @@
 <section class="home-main">
   <ul class="home-results">
     <li class="home-result-item" *ngFor="let item of (searchHotelData$ | async)">
-      {{item.id}}
+      <img class="home-result-item-img" [src]="item.photo" />
+      <div class="home-result-item-info">
+        <div class="home-result-item-info-top">
+          <div class="home-result-item-info-name">{{item.name}}</div>
+          <div class="home-result-item-info-stars">{{item.stars}}</div>
+        </div>
+        <div class="home-result-item-info-bottom">
+          <div class="home-result-item-info-price"></div>
+        </div>
+      </div>
     </li>
   </ul>
 </section>

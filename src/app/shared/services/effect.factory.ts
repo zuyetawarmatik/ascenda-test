@@ -54,4 +54,19 @@ export class EffectFactory {
       )
     ) as Observable<Action>)
   }
+
+  // NOTE: This is used to chain a Chained after a Trigger.
+  createChainedDispatch<Trigger extends TriggerAction, Chained extends ResultAction<Trigger>>(
+    { triggerActionType, chainedActionConstructor, conditionCallback = () => true }: {
+      triggerActionType: string;
+      chainedActionConstructor: Constructor<Chained>;
+      conditionCallback?: (action: Trigger) => boolean;
+    }
+  ): Observable<Action> & CreateEffectMetadata {
+    return createEffect(() => this._actions$.pipe(
+      ofType<Trigger>(triggerActionType),
+      filter(conditionCallback),
+      map((action: Trigger) => new chainedActionConstructor(action))
+    ) as Observable<Action>)
+  }
 }

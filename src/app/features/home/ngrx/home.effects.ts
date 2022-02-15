@@ -23,6 +23,11 @@ export class HomeEffects {
     serviceCallback: action => this._homeService.searchHotel(action.payload[0])
   })
 
+  searchHotelSuccess$ = this._effectFactory.createChainedDispatch<SearchHotelSuccess, GetHotelPrices>({
+    triggerActionType: HomeActionTypes.SearchHotelSuccess,
+    chainedActionConstructor: GetHotelPrices
+  })
+
   getHotelPrices$ = this._effectFactory.createDispatch<GetHotelPrices, GetHotelPricesSuccess, GetHotelPricesFailure>({
     triggerActionType: HomeActionTypes.GetHotelPrices,
     successActionConstructor: GetHotelPricesSuccess,
