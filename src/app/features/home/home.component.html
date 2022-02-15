@@ -23,7 +23,9 @@
           <div class="home-result-item-info-stars">{{item.stars}}</div>
         </div>
         <div class="home-result-item-info-bottom">
-          <div class="home-result-item-info-price"></div>
+          <div class="home-result-item-info-price">
+            {{item.id | price:(getHotelPricesData$ | async)}}
+          </div>
         </div>
       </div>
     </li>

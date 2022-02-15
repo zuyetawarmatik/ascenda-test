@@ -9,9 +9,12 @@ export const HomeActionTypes = {
   GetHotelPricesFailure: '[Home] Get Hotel Prices Failure'
 }
 
+type SearchHotelPayload = [keyword: string]
+type GetHotelPricesPayload = [keyword: string, currency: string]
+
 export class SearchHotel implements TriggerAction {
   readonly type = HomeActionTypes.SearchHotel
-  constructor(public payload: [string]) { }
+  constructor(public payload: SearchHotelPayload) { }
 }
 
 export class SearchHotelSuccess implements ResultAction<SearchHotel> {
@@ -26,7 +29,7 @@ export class SearchHotelFailure implements ResultAction<SearchHotel> {
 
 export class GetHotelPrices implements TriggerAction {
   readonly type = HomeActionTypes.GetHotelPrices
-  constructor(public payload: [string, string]) { }
+  constructor(public payload: GetHotelPricesPayload) { }
 }
 
 export class GetHotelPricesSuccess implements ResultAction<GetHotelPrices> {
