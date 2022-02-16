@@ -206,7 +206,7 @@ $warn: map.get($theme, warn);
       gap: 16px;
 
       &.ours {
-        color: mat.get-color-from-palette($accent);
+        color: mat.get-color-from-palette($warn);
       }
 
       &-price {
