@@ -1,10 +1,13 @@
-### VSCode Configuration
-- The project configuration should be kept intact in folder .vscode/settings.json
+## Install deps
 
-### Linting & Formatting
-- Reference: https://github.com/angular-eslint/angular-eslint and https://dev.to/bhargavmantha/the-secret-to-configuring-eslint-prettier-prettier-eslint-plugin-in-vscode-for-angular-ts-and-js-project-51la
-- Install plugin ESLint dbaeumer.vscode-eslint.
-- Install plugin SCSS Formatter sibiraj-s.vscode-scss-formatter.
+`npm i`
 
-### Testing
-- Install plugin Code Coverage markis.code-coverage
+## Run
+
+`npm start`
+
+Type 'tokyo' in search box to get results, other keywords won't return results.
+
+## Test
+
+`npm test`
