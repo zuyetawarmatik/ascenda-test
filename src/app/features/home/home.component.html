@@ -23,9 +23,14 @@
       <div class="home-result-item-info">
         <div class="home-result-item-info-top">
           <div class="home-result-item-info-top-start">
-            <div class="home-result-item-info-name">{{item.name}}</div>
-            <div class="home-result-item-info-stars">
-              <img src="assets/images/star.png" *ngFor="let _ of [].constructor(item.stars)" />
+            <div class="home-result-item-info-name">
+              {{item.name}}
+              <span class="home-result-item-info-stars">
+                <img src="assets/images/star.png" *ngFor="let _ of [].constructor(item.stars)" />
+              </span>
+            </div>
+            <div class="home-result-item-info-address">
+              {{item.address}}
             </div>
           </div>
           <div class="home-result-item-info-top-end">
@@ -38,13 +43,13 @@
             <ng-container *ngLet="item.id | price:pricesData:'own' as ownPrice">
               <ng-container *ngLet="item.id | price:pricesData:'tax' as taxFees">
                 <div class="home-result-item-info-bottom-end">
-                  <div class="home-result-item-info-top-comp-price">
+                  <div class="home-result-item-info-comp-price">
                     {{compPrice}}
                   </div>
                   <div class="home-result-item-info-price">
                     {{ownPrice}}
                   </div>
-                  <div class="home-result-item-info-tax-fee" *ngIf="taxFees">
+                  <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
                     Including tax and fees
                   </div>
                 </div>

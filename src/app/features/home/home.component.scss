@@ -5,6 +5,8 @@
 $background: map.get($theme, background);
 $foreground: map.get($theme, foreground);
 $primary: map.get($theme, primary);
+$accent: map.get($theme, accent);
+$warn: map.get($theme, warn);
 
 :host {
   min-height: 0;
@@ -16,7 +18,6 @@ $primary: map.get($theme, primary);
   &-top {
     padding: 12px;
     padding-block-end: 0;
-    // background-color: mat.get-color-from-palette($primary);
   }
 
   &-form {
@@ -63,7 +64,7 @@ $primary: map.get($theme, primary);
     &-img-wrapper {
       position: relative;
       width: 200px;
-      height: 150px;
+      min-height: 150px;
       flex-shrink: 0;
       border-radius: 8px;
       overflow: hidden;
@@ -98,6 +99,9 @@ $primary: map.get($theme, primary);
 
     &-info {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       padding: 16px;
 
       &-top {
@@ -106,16 +110,11 @@ $primary: map.get($theme, primary);
         gap: 12px;
       }
 
-      &-top-start {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-
       &-name {
         font-weight: 500;
-        font-size: mat.font-size($typography-config, "subheading-2");
+        font-size: mat.font-size($typography-config, "title");
         color: mat.get-color-from-palette($primary);
+        margin-block-end: 4px;
       }
 
       &-stars {
@@ -124,6 +123,40 @@ $primary: map.get($theme, primary);
           height: 16px;
           margin-inline-start: 2px;
         }
+      }
+
+      &-rating {
+        border-radius: 8px;
+        padding: 4px 8px;
+        background: mat.get-color-from-palette($primary, 800);
+        color: #fff;
+      }
+
+      &-bottom {
+        margin-block-start: 8px;
+        display: flex;
+
+        &-end {
+          margin-inline-start: auto;
+          text-align: end;
+        }
+      }
+
+      &-price {
+        font-size: mat.font-size($typography-config, "display-1");
+        font-weight: 600;
+        color: mat.get-color-from-palette($primary);
+        margin-block: 4px;
+      }
+
+      &-comp-price {
+        text-decoration: line-through;
+        color: mat.get-color-from-palette($warn);
+      }
+
+      &-tax-fees {
+        color: map.get($foreground, hint-text);
+        font-style: italic;
       }
     }
   }
