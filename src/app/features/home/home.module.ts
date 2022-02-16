@@ -7,11 +7,11 @@ import { MatInputModule } from '@angular/material/input'
 import { MatCardModule } from '@angular/material/card'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
-import { MatTooltipModule } from '@angular/material/tooltip'
 import { RouterModule, Routes } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { NgLetModule } from 'ng-let'
+import { TooltipModule } from 'ng2-tooltip-directive'
 
 import { SharedModule } from 'app/shared/modules/shared.module'
 
@@ -48,8 +48,8 @@ const routes: Routes = [
     MatCardModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatTooltipModule,
     NgLetModule,
+    TooltipModule,
     SharedModule
   ],
   bootstrap: [HomeComponent],

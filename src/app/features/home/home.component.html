@@ -30,26 +30,27 @@
   </div>
 
   <ul class="home-results" *ngIf="results">
-    <li class="home-result-item" *ngFor="let item of results">
+    <li class="home-result-item" *ngFor="let resultItem of results">
       <div class="home-result-item-img-wrapper">
         <div class="home-result-item-img-loading"></div>
-        <img class="home-result-item-img" [src]="item.photo" />
+        <img class="home-result-item-img" [src]="resultItem.photo" />
       </div>
       <div class="home-result-item-info">
         <div class="home-result-item-info-top">
           <div class="home-result-item-info-top-start">
             <div class="home-result-item-info-name">
-              {{item.name}}
+              {{resultItem.name}}
               <span class="home-result-item-info-stars">
-                <img src="assets/images/star.png" *ngFor="let _ of [].constructor(item.stars)" />
+                <img src="assets/images/star.png"
+                     *ngFor="let _ of [].constructor(resultItem.stars)" />
               </span>
             </div>
             <div class="home-result-item-info-address">
-              {{item.address}}
+              {{resultItem.address}}
             </div>
           </div>
           <div class="home-result-item-info-top-end">
-            <div class="home-result-item-info-rating">{{item.rating}}</div>
+            <div class="home-result-item-info-rating">{{resultItem.rating}}</div>
           </div>
         </div>
         <div class="home-result-item-info-bottom"
@@ -66,24 +67,42 @@
               </div>
 
               <ng-template #loaded>
-                <ng-container *ngLet="item.id | price:pricesData:'own' as ownPrice">
-                  <ng-container *ngLet="item.id | price:pricesData:'comp' as compPrice">
-                    <ng-container *ngLet="item.id | price:pricesData:'save' as saving">
-                      <ng-container *ngLet="item.id | price:pricesData:'tax' as taxFees">
-                        <div class="home-result-item-info-comp" *ngIf="compPrice">
-                          <span class="home-result-item-info-comp-saving">
-                            (Save {{saving}}%)
-                          </span>
-                          <span class="home-result-item-info-comp-price">
-                            {{compPrice | currencyFmt:currency!}}
-                          </span>
-                        </div>
-                        <div class="home-result-item-info-price">
-                          {{ownPrice | currencyFmt:currency!}}
-                        </div>
-                        <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
-                          Including tax and fees
-                        </div>
+                <ng-container *ngLet="resultItem.id | price:pricesData:'own' as ownPrice">
+                  <ng-container *ngLet="resultItem.id | price:pricesData:'comp' as compPrice">
+                    <ng-container
+                                  *ngLet="resultItem.id | price:pricesData:'compList' as compPriceList">
+                      <ng-container *ngLet="resultItem.id | price:pricesData:'save' as saving">
+                        <ng-container *ngLet="resultItem.id | price:pricesData:'tax' as taxFees">
+                          <div class="home-result-item-info-comp" *ngIf="compPrice">
+                            <span class="home-result-item-info-comp-saving">
+                              (Save {{saving}}%)
+                            </span>
+                            <span class="home-result-item-info-comp-price"
+                                  [tooltip]="$any(compPriceContent)" contentType="template">
+                              {{compPrice | currencyFmt:currency!}}
+                            </span>
+                            <ng-template #compPriceContent>
+                              <ul class="home-comp-price-list">
+                                <li class="home-comp-price-list-item"
+                                    *ngFor="let compPriceItem of compPriceList"
+                                    [class.ours]="!compPriceItem.name">
+                                  <div class="home-comp-price-list-item-name">
+                                    {{compPriceItem.name ?? 'Our Price'}}
+                                  </div>
+                                  <div class="home-comp-price-list-item-price">
+                                    {{compPriceItem.price | currencyFmt:currency!}}
+                                  </div>
+                                </li>
+                              </ul>
+                            </ng-template>
+                          </div>
+                          <div class="home-result-item-info-price">
+                            {{ownPrice | currencyFmt:currency!}}
+                          </div>
+                          <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
+                            Including tax and fees
+                          </div>
+                        </ng-container>
                       </ng-container>
                     </ng-container>
                   </ng-container>

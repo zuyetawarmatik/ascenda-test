@@ -19,3 +19,8 @@ export type Price = {
     hotel_fees: number
   }
 }
+
+export type PriceList = {
+  name?: string,
+  price: number
+}[]

@@ -180,6 +180,7 @@ $warn: map.get($theme, warn);
 
       &-comp {
         color: mat.get-color-from-palette($warn);
+        cursor: pointer;
 
         &-price {
           font-weight: 600;
@@ -190,6 +191,26 @@ $warn: map.get($theme, warn);
       &-tax-fees {
         color: map.get($foreground, hint-text);
         font-style: italic;
+      }
+    }
+  }
+
+  &-comp-price-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+
+      &.ours {
+        color: mat.get-color-from-palette($accent);
+      }
+
+      &-price {
+        font-weight: 600;
       }
     }
   }

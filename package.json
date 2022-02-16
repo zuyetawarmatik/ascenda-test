@@ -31,6 +31,7 @@
     "@types/lodash-es": "^4.17.5",
     "lodash-es": "^4.17.21",
     "ng-let": "^2.0.1",
+    "ng2-tooltip-directive": "^2.10.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
