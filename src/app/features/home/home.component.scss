@@ -149,9 +149,13 @@ $warn: map.get($theme, warn);
         margin-block: 4px;
       }
 
-      &-comp-price {
-        text-decoration: line-through;
+      &-comp {
         color: mat.get-color-from-palette($warn);
+
+        &-price {
+          font-weight: 600;
+          text-decoration: line-through;
+        }
       }
 
       &-tax-fees {

@@ -39,20 +39,27 @@
         </div>
         <div class="home-result-item-info-bottom"
              *ngLet="getHotelPricesData$ | async as pricesData">
-          <ng-container *ngLet="item.id | price:pricesData:'comp' as compPrice">
-            <ng-container *ngLet="item.id | price:pricesData:'own' as ownPrice">
-              <ng-container *ngLet="item.id | price:pricesData:'tax' as taxFees">
-                <div class="home-result-item-info-bottom-end">
-                  <div class="home-result-item-info-comp-price">
-                    {{compPrice}}
+          <ng-container *ngLet="item.id | price:pricesData:'own' as ownPrice">
+            <ng-container *ngLet="item.id | price:pricesData:'comp' as compPrice">
+              <ng-container *ngLet="item.id | price:pricesData:'save' as saving">
+                <ng-container *ngLet="item.id | price:pricesData:'tax' as taxFees">
+                  <div class="home-result-item-info-bottom-end">
+                    <div class="home-result-item-info-comp">
+                      <span class="home-result-item-info-comp-saving">
+                        (Save {{saving}}%)
+                      </span>
+                      <span class="home-result-item-info-comp-price">
+                        {{compPrice}}
+                      </span>
+                    </div>
+                    <div class="home-result-item-info-price">
+                      {{ownPrice}}
+                    </div>
+                    <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
+                      Including tax and fees
+                    </div>
                   </div>
-                  <div class="home-result-item-info-price">
-                    {{ownPrice}}
-                  </div>
-                  <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
-                    Including tax and fees
-                  </div>
-                </div>
+                </ng-container>
               </ng-container>
             </ng-container>
           </ng-container>
