@@ -24,9 +24,13 @@
   </mat-menu>
 </section>
 
-<section class="home-main">
-  <ul class="home-results">
-    <li class="home-result-item" *ngFor="let item of (searchHotelData$ | async)">
+<section class="home-main" *ngLet="searchHotelData$ | async as results">
+  <div class="home-results-empty" *ngIf="!results">
+    Your search result shown here.
+  </div>
+
+  <ul class="home-results" *ngIf="results">
+    <li class="home-result-item" *ngFor="let item of results">
       <div class="home-result-item-img-wrapper">
         <div class="home-result-item-img-loading"></div>
         <img class="home-result-item-img" [src]="item.photo" />

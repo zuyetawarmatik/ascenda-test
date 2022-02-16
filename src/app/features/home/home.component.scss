@@ -58,6 +58,7 @@ $warn: map.get($theme, warn);
   }
 
   &-main {
+    height: 100%;
     padding: 24px;
     overflow: auto;
   }
@@ -67,6 +68,14 @@ $warn: map.get($theme, warn);
     margin: auto;
     list-style-type: none;
     padding: 0;
+
+    &-empty {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
   }
 
   &-result-item {
