@@ -3,14 +3,25 @@
     <mat-form-field class="home-form-name" [hideRequiredMarker]="true"
                     *ngLet="isSearchHotelProcessing$ | async as searching">
       <mat-label>Where would you like to stay?</mat-label>
-      <input matInput [formControl]="keywordCtrl" type="text" required cdkFocusInitial>
+      <input matInput [formControl]="keywordCtrl" type="text" required cdkFocusInitial
+             autocomplete="new-keyWord">
       <button mat-icon-button matSuffix class="home-form-submit-btn" type="button" color="primary"
               (click)="onSubmit()" [disabled]="searchForm.invalid || searching">
         <mat-spinner *ngIf="searching" diameter="16"></mat-spinner>
-        <mat-icon *ngIf="searching === false">search</mat-icon>
+        <mat-icon *ngIf="!searching">search</mat-icon>
       </button>
     </mat-form-field>
   </form>
+  <button mat-button class="home-currency-btn" [matMenuTriggerFor]="currencyMenu">
+    {{currency}}
+  </button>
+  <mat-menu #currencyMenu>
+    <button class="home-currency-menu-item-btn" mat-menu-item
+            (click)="onCurrencyMenuItemBtnClick($any(cur.code))" *ngFor="let cur of currencies">
+      <div class="home-currency-menu-item-btn-name">{{cur.name}}</div>
+      <div class="home-currency-menu-item-btn-code">{{cur.code}}</div>
+    </button>
+  </mat-menu>
 </section>
 
 <section class="home-main">
@@ -39,30 +50,44 @@
         </div>
         <div class="home-result-item-info-bottom"
              *ngLet="getHotelPricesData$ | async as pricesData">
-          <ng-container *ngLet="item.id | price:pricesData:'own' as ownPrice">
-            <ng-container *ngLet="item.id | price:pricesData:'comp' as compPrice">
-              <ng-container *ngLet="item.id | price:pricesData:'save' as saving">
-                <ng-container *ngLet="item.id | price:pricesData:'tax' as taxFees">
-                  <div class="home-result-item-info-bottom-end">
-                    <div class="home-result-item-info-comp">
-                      <span class="home-result-item-info-comp-saving">
-                        (Save {{saving}}%)
-                      </span>
-                      <span class="home-result-item-info-comp-price">
-                        {{compPrice}}
-                      </span>
-                    </div>
-                    <div class="home-result-item-info-price">
-                      {{ownPrice}}
-                    </div>
-                    <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
-                      Including tax and fees
-                    </div>
-                  </div>
+
+          <div class="home-result-item-info-bottom-end">
+            <mat-spinner class="home-result-item-info-price-loading-spinner"
+                         *ngIf="isGetHotelPricesProcessing$ | async; else notLoading" diameter="16">
+            </mat-spinner>
+
+            <ng-template #notLoading>
+              <div class="home-result-item-info-price-empty" *ngIf="!pricesData; else loaded">
+                Price Not Available
+              </div>
+
+              <ng-template #loaded>
+                <ng-container *ngLet="item.id | price:pricesData:'own' as ownPrice">
+                  <ng-container *ngLet="item.id | price:pricesData:'comp' as compPrice">
+                    <ng-container *ngLet="item.id | price:pricesData:'save' as saving">
+                      <ng-container *ngLet="item.id | price:pricesData:'tax' as taxFees">
+                        <div class="home-result-item-info-comp" *ngIf="compPrice">
+                          <span class="home-result-item-info-comp-saving">
+                            (Save {{saving}}%)
+                          </span>
+                          <span class="home-result-item-info-comp-price">
+                            {{compPrice}}
+                          </span>
+                        </div>
+                        <div class="home-result-item-info-price">
+                          {{ownPrice}}
+                        </div>
+                        <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
+                          Including tax and fees
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
-            </ng-container>
-          </ng-container>
+              </ng-template>
+            </ng-template>
+          </div>
+
         </div>
       </div>
     </li>

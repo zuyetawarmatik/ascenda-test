@@ -16,11 +16,17 @@ $warn: map.get($theme, warn);
 
 .home {
   &-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
     padding: 12px;
     padding-block-end: 0;
+    border-bottom: 1px solid map.get($foreground, divider);
   }
 
   &-form {
+    flex: 1;
+
     ::ng-deep {
       .mat-form-field-underline {
         opacity: 0;
@@ -34,6 +40,16 @@ $warn: map.get($theme, warn);
           caret-color: inherit;
         }
       }
+    }
+  }
+
+  &-currency-menu-item-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    &-code {
+      font-weight: 600;
     }
   }
 

@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects'
 import { environment } from 'src/environments/environment'
 import { ApiInterceptor } from 'app/shared/interceptors/api.interceptor'
 import { BrowserWindowRef, WINDOW, windowFactory, WindowRef } from 'app/shared/services/window.service'
+import reducers from 'app/shared/ngrx/reducers'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -19,7 +20,7 @@ import { AppComponent } from './app.component'
   imports: [
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'Ascenda Test',
       logOnly: environment.production
