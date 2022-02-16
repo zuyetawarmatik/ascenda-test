@@ -3,7 +3,11 @@ import {
 } from 'app/shared/utils/ngrx'
 import { Currency } from 'app/shared/constants'
 
-import { ConfigActions, ConfigActionTypes } from './config.actions'
+import {
+  ChangeCurrency as ChangeCurrencyAction,
+  ConfigActions, ConfigActionTypes,
+  RehydrateConfig as RehydrateConfigAction
+} from './config.actions'
 
 export interface ConfigState {
   currency: SimpleReadState<Currency>
@@ -16,7 +20,8 @@ export const CONFIG_INITIAL_STATE: ConfigState = {
 }
 
 const {
-  ChangeCurrency
+  ChangeCurrency,
+  RehydrateConfig
 } = ConfigActionTypes
 
 export function configReducer(
@@ -25,7 +30,10 @@ export function configReducer(
 ): ConfigState {
   switch (action.type) {
     case ChangeCurrency:
-      return { ...state, currency: { data: action.payload } }
+      return { ...state, currency: { data: (action as ChangeCurrencyAction).payload } }
+
+    case RehydrateConfig:
+      return { ...(action as RehydrateConfigAction).payload as ConfigState }
 
     default:
       return state

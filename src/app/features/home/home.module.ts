@@ -20,6 +20,7 @@ import { HomeService } from './home.service'
 import { HomeEffects } from './ngrx/home.effects'
 import { homeReducer } from './ngrx/home.reducer'
 import { PricePipe } from './pipes/price.pipe'
+import { CurrencyFormatPipe } from './pipes/currency.pipe'
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomeComponent,
-    PricePipe
+    PricePipe,
+    CurrencyFormatPipe
   ],
   imports: [
     RouterModule.forChild(routes),

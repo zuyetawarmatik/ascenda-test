@@ -46,7 +46,11 @@ $warn: map.get($theme, warn);
   &-currency-menu-item-btn {
     display: flex;
     justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
+
+    &-name {
+      color: map.get($foreground, hint-text);
+    }
 
     &-code {
       font-weight: 600;
@@ -159,7 +163,7 @@ $warn: map.get($theme, warn);
       }
 
       &-price {
-        font-size: mat.font-size($typography-config, "display-1");
+        font-size: mat.font-size($typography-config, "headline");
         font-weight: 600;
         color: mat.get-color-from-palette($primary);
         margin-block: 4px;

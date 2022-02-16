@@ -75,3 +75,5 @@ export const CURRENCIES: {
     namePlural: 'US dollars'
   }
 }
+
+export const STORAGE_CONFIG_KEY = 'CONFIG'

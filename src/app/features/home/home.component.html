@@ -71,11 +71,11 @@
                             (Save {{saving}}%)
                           </span>
                           <span class="home-result-item-info-comp-price">
-                            {{compPrice}}
+                            {{compPrice | currencyFmt:currency!}}
                           </span>
                         </div>
                         <div class="home-result-item-info-price">
-                          {{ownPrice}}
+                          {{ownPrice | currencyFmt:currency!}}
                         </div>
                         <div class="home-result-item-info-tax-fees" *ngIf="taxFees">
                           Including tax and fees

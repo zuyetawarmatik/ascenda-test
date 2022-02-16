@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment'
 import { ApiInterceptor } from 'app/shared/interceptors/api.interceptor'
 import { BrowserWindowRef, WINDOW, windowFactory, WindowRef } from 'app/shared/services/window.service'
 import reducers from 'app/shared/ngrx/reducers'
+import effects from 'app/shared/ngrx/effects'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -25,7 +26,7 @@ import { AppComponent } from './app.component'
       name: 'Ascenda Test',
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     AppRoutingModule
   ],
   providers: [
