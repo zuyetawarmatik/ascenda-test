@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip'
 import { RouterModule, Routes } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
+import { NgLetModule } from 'ng-let'
 
 import { SharedModule } from 'app/shared/modules/shared.module'
 
@@ -33,6 +34,9 @@ const routes: Routes = [
     PricePipe
   ],
   imports: [
+    RouterModule.forChild(routes),
+    StoreModule.forFeature('home', homeReducer),
+    EffectsModule.forFeature([HomeEffects]),
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -41,9 +45,7 @@ const routes: Routes = [
     MatCardModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    RouterModule.forChild(routes),
-    StoreModule.forFeature('home', homeReducer),
-    EffectsModule.forFeature([HomeEffects]),
+    NgLetModule,
     SharedModule
   ],
   bootstrap: [HomeComponent],

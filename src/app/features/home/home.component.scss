@@ -3,6 +3,7 @@
 @use "src/app/shared/styles/variables" as *;
 
 $background: map.get($theme, background);
+$foreground: map.get($theme, foreground);
 $primary: map.get($theme, primary);
 
 :host {
@@ -15,12 +16,115 @@ $primary: map.get($theme, primary);
   &-top {
     padding: 12px;
     padding-block-end: 0;
-    background-color: mat.get-color-from-palette($primary);
+    // background-color: mat.get-color-from-palette($primary);
   }
 
   &-form {
-    ::ng-deep .mat-form-field-underline {
-      opacity: 0;
+    ::ng-deep {
+      .mat-form-field-underline {
+        opacity: 0;
+      }
+
+      .mat-form-field-invalid {
+        .mat-form-field-label {
+          color: inherit;
+        }
+        .mat-input-element {
+          caret-color: inherit;
+        }
+      }
+    }
+  }
+
+  &-main {
+    padding: 24px;
+    overflow: auto;
+  }
+
+  &-results {
+    max-width: 960px;
+    margin: auto;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  &-result-item {
+    display: flex;
+    padding: 4px;
+    border: 0.5px solid map.get($foreground, divider);
+    box-shadow: rgba(black, 0.1) 0px 10px 15px -3px, rgba(black, 0.05) 0px 4px 6px -2px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    & + & {
+      margin-block-start: 24px;
+    }
+
+    &-img-wrapper {
+      position: relative;
+      width: 200px;
+      height: 150px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    &-img-loading,
+    &-img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-img-loading {
+      @keyframes placeHolderShimmer {
+        0% {
+          background-position: -250px 0;
+        }
+        100% {
+          background-position: 0 0;
+        }
+      }
+      animation: placeHolderShimmer 1.5s forwards infinite;
+      background: linear-gradient(to right, #eee 8%, #ddd 18%, #eee 33%);
+    }
+
+    &-img {
+      z-index: 1;
+      object-fit: cover;
+    }
+
+    &-info {
+      flex: 1;
+      padding: 16px;
+
+      &-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      &-top-start {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      &-name {
+        font-weight: 500;
+        font-size: mat.font-size($typography-config, "subheading-2");
+        color: mat.get-color-from-palette($primary);
+      }
+
+      &-stars {
+        img {
+          width: 16px;
+          height: 16px;
+          margin-inline-start: 2px;
+        }
+      }
     }
   }
 }

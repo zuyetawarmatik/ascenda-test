@@ -1,6 +1,6 @@
 <section class="home-top">
   <form class="home-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
-    <mat-form-field class="home-form-name" appearance="standard" [hideRequiredMarker]="true">
+    <mat-form-field class="home-form-name" [hideRequiredMarker]="true">
       <mat-label>Where would you like to stay?</mat-label>
       <input matInput [formControl]="keywordCtrl" type="text" required cdkFocusInitial>
       <button mat-icon-button matSuffix class="home-form-submit-btn" type="button" color="primary"
@@ -16,16 +16,35 @@
 <section class="home-main">
   <ul class="home-results">
     <li class="home-result-item" *ngFor="let item of (searchHotelData$ | async)">
-      <img class="home-result-item-img" [src]="item.photo" />
+      <div class="home-result-item-img-wrapper">
+        <div class="home-result-item-img-loading"></div>
+        <img class="home-result-item-img" [src]="item.photo" />
+      </div>
       <div class="home-result-item-info">
         <div class="home-result-item-info-top">
-          <div class="home-result-item-info-name">{{item.name}}</div>
-          <div class="home-result-item-info-stars">{{item.stars}}</div>
+          <div class="home-result-item-info-top-start">
+            <div class="home-result-item-info-name">{{item.name}}</div>
+            <div class="home-result-item-info-stars">
+              <img src="assets/images/star.png" *ngFor="let _ of [].constructor(item.stars)" />
+            </div>
+          </div>
+          <div class="home-result-item-info-top-end">
+            <div class="home-result-item-info-rating">{{item.rating}}</div>
+          </div>
         </div>
         <div class="home-result-item-info-bottom">
-          <div class="home-result-item-info-price">
-            {{item.id | price:(getHotelPricesData$ | async)}}
-          </div>
+          <ng-container *ngLet="item.id | price:(getHotelPricesData$ | async):'comp' as compPrice">
+            <ng-container *ngLet="item.id | price:(getHotelPricesData$ | async):'own' as ownPrice">
+              <div class="home-result-item-info-bottom-end">
+                <div class="home-result-item-info-top-comp-price">
+                  {{compPrice}}
+                </div>
+                <div class="home-result-item-info-price">
+                  {{ownPrice}}
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
         </div>
       </div>
     </li>
