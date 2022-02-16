@@ -1,13 +1,13 @@
 <section class="home-top">
   <form class="home-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
-    <mat-form-field class="home-form-name" [hideRequiredMarker]="true">
+    <mat-form-field class="home-form-name" [hideRequiredMarker]="true"
+                    *ngLet="isSearchHotelProcessing$ | async as searching">
       <mat-label>Where would you like to stay?</mat-label>
       <input matInput [formControl]="keywordCtrl" type="text" required cdkFocusInitial>
       <button mat-icon-button matSuffix class="home-form-submit-btn" type="button" color="primary"
-              (click)="onSubmit()"
-              [disabled]="searchForm.invalid || (isSearchHotelProcessing$ | async)">
-        <mat-spinner *ngIf="isSearchHotelProcessing$ | async" diameter="16"></mat-spinner>
-        <mat-icon *ngIf="(isSearchHotelProcessing$ | async) === false">search</mat-icon>
+              (click)="onSubmit()" [disabled]="searchForm.invalid || searching">
+        <mat-spinner *ngIf="searching" diameter="16"></mat-spinner>
+        <mat-icon *ngIf="searching === false">search</mat-icon>
       </button>
     </mat-form-field>
   </form>
@@ -32,17 +32,23 @@
             <div class="home-result-item-info-rating">{{item.rating}}</div>
           </div>
         </div>
-        <div class="home-result-item-info-bottom">
-          <ng-container *ngLet="item.id | price:(getHotelPricesData$ | async):'comp' as compPrice">
-            <ng-container *ngLet="item.id | price:(getHotelPricesData$ | async):'own' as ownPrice">
-              <div class="home-result-item-info-bottom-end">
-                <div class="home-result-item-info-top-comp-price">
-                  {{compPrice}}
+        <div class="home-result-item-info-bottom"
+             *ngLet="getHotelPricesData$ | async as pricesData">
+          <ng-container *ngLet="item.id | price:pricesData:'comp' as compPrice">
+            <ng-container *ngLet="item.id | price:pricesData:'own' as ownPrice">
+              <ng-container *ngLet="item.id | price:pricesData:'tax' as taxFees">
+                <div class="home-result-item-info-bottom-end">
+                  <div class="home-result-item-info-top-comp-price">
+                    {{compPrice}}
+                  </div>
+                  <div class="home-result-item-info-price">
+                    {{ownPrice}}
+                  </div>
+                  <div class="home-result-item-info-tax-fee" *ngIf="taxFees">
+                    Including tax and fees
+                  </div>
                 </div>
-                <div class="home-result-item-info-price">
-                  {{ownPrice}}
-                </div>
-              </div>
+              </ng-container>
             </ng-container>
           </ng-container>
         </div>

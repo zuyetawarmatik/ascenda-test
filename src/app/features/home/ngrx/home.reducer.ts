@@ -7,16 +7,17 @@ import {
   readReducer, readSuccessReducer, readFailureReducer,
   ResultAction, TriggerAction
 } from 'app/shared/utils/ngrx'
+import { Hotel, Price } from 'app/shared/models'
 
 import { HomeActions, HomeActionTypes } from './home.actions'
 
 export interface HomeState {
   searchHotel: {
-    [keyword: string]: ReadState
+    [keyword: string]: ReadState<Hotel[]>
   },
   getHotelPrices: {
     [keyword: string]: {
-      [currency: string]: ReadState
+      [currency: string]: ReadState<Price[]>
     }
   }
 }

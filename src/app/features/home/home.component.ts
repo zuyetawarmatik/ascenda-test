@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs'
 import { filter, switchMap } from 'rxjs/operators'
 
 import { Nullable } from 'app/shared/utils/types'
+import { Hotel, Price } from 'app/shared/models'
 
 import { GetHotelPrices, HomeActionTypes, SearchHotel, SearchHotelSuccess } from './ngrx/home.actions'
 import { FeatureState } from './ngrx/home.reducer'
@@ -27,8 +28,8 @@ export class HomeComponent implements OnInit {
 
   isSearchHotelProcessing$!: Observable<boolean>
 
-  searchHotelData$!: Observable<Nullable<any[]>>
-  getHotelPricesData$!: Observable<Nullable<any[]>>
+  searchHotelData$!: Observable<Nullable<Hotel[]>>
+  getHotelPricesData$!: Observable<Nullable<Price[]>>
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -50,7 +51,7 @@ export class HomeComponent implements OnInit {
 
   private _createForm(): void {
     this.searchForm = this._formBuilder.group({
-      keyword: ['tokyo', [Validators.required]]
+      keyword: ['', [Validators.required]]
     })
   }
 
