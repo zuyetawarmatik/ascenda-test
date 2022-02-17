@@ -5,7 +5,7 @@
     "ng": "npx ng",
     "start": "npx ng serve --host 0.0.0.0",
     "build": "npx ng build",
-    "test": "npx ng test --no-watch --code-coverage",
+    "test": "npx ng test --no-watch",
     "test:watch": "npx ng test --watch",
     "lint": "npx ng lint"
   },
