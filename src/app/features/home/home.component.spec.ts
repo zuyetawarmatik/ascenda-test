@@ -46,7 +46,7 @@ const resultItemInfoCompPriceCls = `${resultItemInfoCompCls}-price`
 const resultItemInfoTaxFeesCls = `${resultItemInfoCls}-tax-fees`
 const matSpinnerSel = 'mat-spinner'
 
-fdescribe(HomeComponent.name, () => {
+describe(HomeComponent.name, () => {
   const keyword = 'tokyo'
   const newCurrency = 'SGD'
 
