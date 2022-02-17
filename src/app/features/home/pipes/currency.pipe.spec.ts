@@ -12,7 +12,7 @@ describe(CurrencyFormatPipe.name, () => {
 
   it('should return correct formatted price', () => {
     expect(pipe.transform(123.22, Currency.USD)).toEqual('$123')
-    expect(pipe.transform(134322.50, Currency.KRW)).toEqual('₩134300')
+    expect(pipe.transform(134322.50, Currency.KRW)).toEqual('₩134,300')
     expect(pipe.transform(null, Currency.KRW)).toEqual(null)
   })
 })
