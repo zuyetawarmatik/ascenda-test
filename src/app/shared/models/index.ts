@@ -11,8 +11,8 @@ export type Hotel = {
 export type Price = {
   id: number
   price: number
-  competitors: {
-    [k in string]: number
+  competitors?: {
+    [k in string]?: number
   },
   taxes_and_fees?: {
     tax: number
@@ -20,7 +20,7 @@ export type Price = {
   }
 }
 
-export type PriceList = {
+export type CompPriceList = {
   name?: string,
   price: number
 }[]
