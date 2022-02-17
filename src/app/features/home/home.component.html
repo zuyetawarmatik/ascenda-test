@@ -1,6 +1,6 @@
 <section class="home-top">
   <form class="home-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
-    <mat-form-field class="home-form-name" [hideRequiredMarker]="true"
+    <mat-form-field class="home-form-keyword" [hideRequiredMarker]="true"
                     *ngLet="isSearchHotelProcessing$ | async as searching">
       <mat-label>Where would you like to stay?</mat-label>
       <input matInput [formControl]="keywordCtrl" type="text" required cdkFocusInitial

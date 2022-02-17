@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
 
     this.isSearchHotelProcessing$ = searchHotel$
       .pipe(
-        map(searchHotel => searchHotel.isProcessing),
+        map(searchHotel => searchHotel?.isProcessing),
         untilDestroyed(this)
       )
 
@@ -120,7 +120,7 @@ export class HomeComponent implements OnInit {
 
     this.searchHotelData$ = searchHotel$
       .pipe(
-        map(searchHotel => searchHotel.data),
+        map(searchHotel => searchHotel?.data),
         untilDestroyed(this)
       )
 

@@ -168,3 +168,61 @@ export const MOCK_PRICES_KRW = [
     price: 137795.67
   }
 ]
+
+export const MOCK_PRICES_USD = [
+  {
+    id: 1,
+    price: 120,
+    competitors: {
+      'Booking.com': 125,
+      'Hotels.com': 121,
+      Expedia: 120,
+      getaroom: 140,
+      'AMOMA.com': 132.77
+    }
+  },
+  {
+    id: 2,
+    price: 841
+  },
+  {
+    id: 3,
+    price: 715,
+    competitors: {
+      Expedia: 722.86,
+      Prestigia: 590.15
+    }
+  },
+  {
+    id: 4,
+    price: 155,
+    competitors: {
+      Kayak: 169.71,
+      getaroom: 184.05
+    }
+  },
+  {
+    id: 5,
+    price: 121,
+    competitors: {
+      Prestigia: 122.49,
+      Kayak: 139.5
+    }
+  },
+  {
+    id: 6,
+    price: 95,
+    competitors: {
+      'Booking.com': 103.3,
+      'Agoda.com': 126.67
+    }
+  },
+  {
+    id: 7,
+    price: 123
+  },
+  {
+    id: 8,
+    price: 123
+  }
+]
